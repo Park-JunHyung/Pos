@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editMemberName"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_margin="15dp"
+        android:hint="이름"/>
+
+    <EditText
+        android:id="@+id/editMemberPhoneNo"
+        android:hint="전화번호"
+        android:layout_margin="15dp"
+        android:layout_below="@id/editMemberName"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+    <Button
+        android:id="@+id/duplicationCheckBtn"
+        android:text="중복확인"
+        android:textSize="30dp"
+        android:layout_margin="15dp"
+        android:layout_below="@id/editMemberPhoneNo"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+    <Button
+        android:id="@+id/signupMemberBtn"
+        android:text="회원가입"
+        android:textSize="30dp"
+        android:layout_margin="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+</RelativeLayout>
