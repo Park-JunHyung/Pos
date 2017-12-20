@@ -13,13 +13,13 @@
         android:layout_height="0dp">
         <ImageButton
             android:src="@android:drawable/ic_menu_revert"
-            android:id="@+id/backFromSearchProduct"
+            android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
         <TextView
             android:text="물품삭제"
             android:background="@drawable/border_btn"
-            android:padding="10dp"
+            android:padding="5dp"
             android:gravity="center"
             android:layout_marginRight="10dp"
             android:layout_width="0dp"
@@ -77,6 +77,15 @@
         <Button
             android:text="조회"
             android:id="@+id/productDelete_searchBtn"
+            android:background="@drawable/border_btn"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:text="삭제"
+            android:id="@+id/productDelete_deleteBtn"
             android:background="@drawable/border_btn"
             android:layout_gravity="center"
             android:layout_weight="1"

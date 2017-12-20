@@ -13,11 +13,11 @@
         android:layout_height="0dp">
         <ImageButton
             android:src="@android:drawable/ic_menu_revert"
-            android:id="@+id/backBtn"
+            android:id="@+id/backFromRefundProduct"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
         <TextView
-            android:text="물품조회"
+            android:text="물품환불"
             android:background="@drawable/border_btn"
             android:padding="5dp"
             android:gravity="center"
@@ -27,37 +27,13 @@
             android:layout_height="match_parent"/>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="4"
             android:background="@drawable/border"
             android:layout_marginRight="5dp"
             android:orientation="horizontal"
             android:layout_height="match_parent">
             <TextView
-                android:text="카테고리"
-                android:background="#e7e6e6"
-                android:padding="5dp"
-                android:layout_margin="1dp"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"/>
-            <Button
-                android:text="과자"
-                android:id="@+id/product_searchCategory"
-                android:background="#ffffff"
-                android:layout_gravity="center"
-                android:layout_margin="1dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:background="@drawable/border"
-            android:layout_marginRight="5dp"
-            android:orientation="horizontal"
-            android:layout_height="match_parent">
-            <TextView
-                android:text="물품이름"
+                android:text="결제번호 입력"
                 android:background="#e7e6e6"
                 android:padding="5dp"
                 android:layout_margin="1dp"
@@ -65,8 +41,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
             <EditText
-                android:hint="감자칩"
-                android:id="@+id/product_searchName"
+                android:hint="201302411"
+                android:id="@+id/productRefund_number"
                 android:gravity="center"
                 android:background="#ffffff"
                 android:layout_margin="1dp"
@@ -76,8 +52,9 @@
         </LinearLayout>
         <Button
             android:text="조회"
-            android:id="@+id/product_searchBtn"
+            android:id="@+id/productRefund_searchBtn"
             android:background="@drawable/border_btn"
+            android:layout_marginRight="5dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -92,22 +69,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="물품명"
+            android:text="결제번호"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:textSize="15dp"
             android:gravity="center"
             android:layout_height="20dp"/>
         <TextView
-            android:text="바코드"
+            android:text="결제금액"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:layout_height="20dp"/>
+        <TextView
+            android:text="물품목록"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:layout_height="20dp"/>
+        <TextView
+            android:text="결제수단"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:layout_height="20dp"/>
+        <TextView
+            android:text="결제일"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:textSize="15dp"
             android:gravity="center"
             android:layout_height="20dp"/>
     </LinearLayout>
     <ListView
-        android:id="@+id/productSearchList"
+        android:id="@+id/productRefundSearchList"
         android:layout_width="match_parent"
         android:layout_weight="12"
         android:layout_height="0dp">
