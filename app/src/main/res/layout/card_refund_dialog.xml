@@ -5,7 +5,6 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -14,16 +13,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="카드 결제"
+            android:text="카드 환불"
             android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/dismissBtnOfCard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="right"
-            android:text="X" />
 
     </RelativeLayout>
 
@@ -38,5 +29,4 @@
             />
 
     </RelativeLayout>
-
 </LinearLayout>
