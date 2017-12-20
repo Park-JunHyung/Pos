@@ -24,6 +24,8 @@ public class ManagerAuthDialog extends Dialog {
     private Context context;
     private String id;
     private String password;
+    private EditText employeeIdInput;
+    private EditText employeePasswordInput;
 
     public ManagerAuthDialog(@NonNull Context context) {
         super(context);
@@ -43,8 +45,8 @@ public class ManagerAuthDialog extends Dialog {
         setContentView(R.layout.dialog_employee_auth);
         TextView title = (TextView) findViewById(R.id.authTitle);
         Button dismissBtn = (Button) findViewById(R.id.dismissBtnOfEmployeeAuth);
-        EditText employeeIdInput = (EditText) findViewById(R.id.employeeIdInput);
-        EditText employeePasswordInput = (EditText) findViewById(R.id.employeePasswordInput);
+        employeeIdInput = (EditText) findViewById(R.id.employeeIdInput);
+        employeePasswordInput = (EditText) findViewById(R.id.employeePasswordInput);
         Button checkEmployee = (Button) findViewById(R.id.checkEmployee);
 
         title.setText("관리자 인증");
@@ -56,12 +58,14 @@ public class ManagerAuthDialog extends Dialog {
             }
         });
 
-        id = employeeIdInput.getText().toString();
-        password = employeePasswordInput.getText().toString();
 
         checkEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                id = employeeIdInput.getText().toString();
+                password = employeePasswordInput.getText().toString();
+
                 boolean success = new EmployeeAuth().employeeAuth(id, password);
 
                 if (success) {

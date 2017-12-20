@@ -5,4 +5,11 @@ package team15.pos.dao;
  */
 
 public class MemberSignUp {
+
+    public boolean checkDuplicationFunc(String name, String phone){
+        return true;
+    }
+    public boolean addMember(String name, String phone){
+        return true;
+    }
 }

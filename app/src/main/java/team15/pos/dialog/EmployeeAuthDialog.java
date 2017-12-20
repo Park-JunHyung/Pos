@@ -26,6 +26,9 @@ public class EmployeeAuthDialog extends Dialog {
     private String password;
     private int loginCount;
 
+    private EditText employeeIdInput;
+    private EditText employeePasswordInput;
+
     public EmployeeAuthDialog(@NonNull Context context) {
         super(context);
         this.context = context;
@@ -44,8 +47,8 @@ public class EmployeeAuthDialog extends Dialog {
         setContentView(R.layout.dialog_employee_auth);
 
         Button dismissBtn = (Button) findViewById(R.id.dismissBtnOfEmployeeAuth);
-        EditText employeeIdInput = (EditText) findViewById(R.id.employeeIdInput);
-        EditText employeePasswordInput = (EditText) findViewById(R.id.employeePasswordInput);
+        employeeIdInput = (EditText) findViewById(R.id.employeeIdInput);
+        employeePasswordInput = (EditText) findViewById(R.id.employeePasswordInput);
         Button checkEmployee = (Button) findViewById(R.id.checkEmployee);
 
         loginCount = 0;
@@ -57,12 +60,13 @@ public class EmployeeAuthDialog extends Dialog {
             }
         });
 
-        id = employeeIdInput.getText().toString();
-        password = employeePasswordInput.getText().toString();
 
         checkEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                id = employeeIdInput.getText().toString();
+                password = employeePasswordInput.getText().toString();
                 boolean success = new EmployeeAuth().employeeAuth(id, password);
                 loginCount++;
                 if (success) {
