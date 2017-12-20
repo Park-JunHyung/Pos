@@ -36,10 +36,10 @@ public class SelectPaymentDialog extends Dialog {
 
         setContentView(R.layout.select_payment);
 
-        Button cashBtn = (Button)findViewById(R.id.select_payment_cash);
-        Button cardBtn = (Button)findViewById(R.id.select_payment_card);
-        Button pointBtn = (Button)findViewById(R.id.select_payment_point);
-        Button dismissBtn = (Button)findViewById(R.id.dismissBtn);
+        Button cashBtn = (Button) findViewById(R.id.select_payment_cash);
+        Button cardBtn = (Button) findViewById(R.id.select_payment_card);
+        Button pointBtn = (Button) findViewById(R.id.select_payment_point);
+        Button dismissBtn = (Button) findViewById(R.id.dismissBtn);
 
         cashBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +66,12 @@ public class SelectPaymentDialog extends Dialog {
         pointBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "포인트결제", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "포인트결제", Toast.LENGTH_SHORT).show();
+
+                UserAuthDialog userAuthDialog = new UserAuthDialog(context);
+                userAuthDialog.show();
+                SelectPaymentDialog.this.dismiss();
+
             }
         });
 
@@ -78,9 +83,6 @@ public class SelectPaymentDialog extends Dialog {
         });
 
     }
-
-
-
 
 
 }
