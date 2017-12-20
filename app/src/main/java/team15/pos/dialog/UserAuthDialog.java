@@ -34,7 +34,7 @@ public class UserAuthDialog extends Dialog {
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.user_auth_dialog);
+        setContentView(R.layout.dialog_user_auth);
 
 
         Button dismissBtn = (Button) findViewById(R.id.dismissBtnOfUserAuth);

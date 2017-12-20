@@ -7,8 +7,6 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import team15.pos.R;
 
@@ -36,7 +34,7 @@ public class CardPaymentDialog extends Dialog {
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.card_payment);
+        setContentView(R.layout.dialog_card_payment);
 
 
         Button dismissBtn = (Button)findViewById(R.id.dismissBtnOfCard);

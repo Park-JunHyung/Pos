@@ -33,7 +33,7 @@ public class SelectProductManageDialog extends Dialog {
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.select_product_manage);
+        setContentView(R.layout.dialog_select_product_manage);
 
         Button addBtn = (Button) findViewById(R.id.select_product_add);
         Button editBtn = (Button) findViewById(R.id.select_product_edit);

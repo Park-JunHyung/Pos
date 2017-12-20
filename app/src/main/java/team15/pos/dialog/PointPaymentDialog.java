@@ -34,7 +34,7 @@ public class PointPaymentDialog extends Dialog {
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.point_payment);
+        setContentView(R.layout.dialog_point_payment);
 
         Button dismissBtn = (Button) findViewById(R.id.dismissBtnOfPoint);
         dismissBtn.setOnClickListener(new View.OnClickListener() {

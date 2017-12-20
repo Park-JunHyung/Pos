@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
 
 import team15.pos.R;
 
@@ -34,7 +33,7 @@ public class SelectPaymentDialog extends Dialog {
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.select_payment);
+        setContentView(R.layout.dialog_select_payment);
 
         Button cashBtn = (Button) findViewById(R.id.select_payment_cash);
         Button cardBtn = (Button) findViewById(R.id.select_payment_card);

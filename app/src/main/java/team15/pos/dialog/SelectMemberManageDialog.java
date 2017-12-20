@@ -34,7 +34,7 @@ public class SelectMemberManageDialog extends Dialog {
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.select_member_manage);
+        setContentView(R.layout.dialog_select_member_manage);
 
         Button addBtn = (Button) findViewById(R.id.select_member_add);
         Button editBtn = (Button) findViewById(R.id.select_member_edit);
