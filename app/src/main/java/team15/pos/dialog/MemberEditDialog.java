@@ -41,6 +41,7 @@ public class MemberEditDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 MemberEditDialog.this.dismiss();
+                
             }
         });
     }
