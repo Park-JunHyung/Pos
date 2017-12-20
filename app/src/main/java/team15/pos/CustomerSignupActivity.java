@@ -8,6 +8,6 @@ public class CustomerSignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_signup);
+        setContentView(R.layout.dialog_customer_signup);
     }
 }

@@ -55,6 +55,14 @@ public class SelectMemberManageDialog extends Dialog {
 
             }
         });
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SignUpDialog signUpDialog = new SignUpDialog(context);
+                signUpDialog.show();
+                SelectMemberManageDialog.this.dismiss();
 
+            }
+        });
     }
 }
