@@ -14,12 +14,12 @@ import team15.pos.R;
  * Created by JSH on 2017-12-20.
  */
 
-public class UserAuthDialog extends Dialog {
+public class PointPaymentDialog extends Dialog {
 
 
     private Context context;
 
-    public UserAuthDialog(@NonNull Context context) {
+    public PointPaymentDialog(@NonNull Context context) {
         super(context);
         this.context = context;
     }
@@ -34,24 +34,13 @@ public class UserAuthDialog extends Dialog {
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.user_auth_dialog);
+        setContentView(R.layout.point_payment);
 
-
-        Button dismissBtn = (Button) findViewById(R.id.dismissBtnOfUserAuth);
-        Button checkUser = (Button) findViewById(R.id.checkUserPhone);
+        Button dismissBtn = (Button) findViewById(R.id.dismissBtnOfPoint);
         dismissBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserAuthDialog.this.dismiss();
-            }
-        });
-
-        checkUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PointPaymentDialog pointPaymentDialog = new PointPaymentDialog(context);
-                pointPaymentDialog.show();
-                UserAuthDialog.this.dismiss();
+                PointPaymentDialog.this.dismiss();
             }
         });
 
