@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="200dp"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="물품관리"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/dismissBtnOfSelectProductManage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:text="X" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/select_product_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="물품추가" />
+
+    <Button
+        android:id="@+id/select_product_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="물품수정" />
+
+    <Button
+        android:id="@+id/select_product_del"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="물품삭제" />
+
+</LinearLayout>

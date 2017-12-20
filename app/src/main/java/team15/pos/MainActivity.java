@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import team15.pos.dialog.SelectPaymentDialog;
+import team15.pos.dialog.SelectProductManageDialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button runPaymentBtn = (Button)findViewById(R.id.runPayment);
+        Button productManagementBtn = (Button)findViewById(R.id.productManagementBtn);
 
         runPaymentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -22,6 +24,13 @@ public class MainActivity extends AppCompatActivity {
                SelectPaymentDialog selectPaymentDialog = new SelectPaymentDialog(MainActivity.this);
 
                selectPaymentDialog.show();
+            }
+        });
+        productManagementBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SelectProductManageDialog selectProductManageDialog = new SelectProductManageDialog(MainActivity.this);
+                selectProductManageDialog.show();
             }
         });
     }
