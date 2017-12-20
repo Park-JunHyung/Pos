@@ -48,10 +48,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:hint="ID"
                 android:inputType="text"
                 android:maxLines="1" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/tempLinear2"
             android:layout_width="match_parent"
@@ -69,6 +71,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:hint="비밀번호"
                 android:inputType="textPassword"
                 android:maxLines="1" />
 
@@ -80,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tempLinear2"
             android:layout_centerHorizontal="true"
-            android:text="삭제 확인" />
+            android:text="확인" />
 
     </RelativeLayout>
 

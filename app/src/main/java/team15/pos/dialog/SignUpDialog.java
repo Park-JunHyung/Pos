@@ -75,6 +75,8 @@ public class SignUpDialog extends Dialog {
 
                     if (!matcher.find()) {
                         Toast.makeText(context, "전화번호 양식이 잘못되었습니다.", Toast.LENGTH_SHORT).show();
+                        signUpPhoneInput.requestFocus();
+                        signUpPhoneInput.setCursorVisible(true);
                         signUpPhoneInput.setSelection(phone.length());
                         return;
                     }
