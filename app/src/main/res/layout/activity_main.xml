@@ -11,63 +11,34 @@
         android:layout_height="match_parent"
         android:layout_weight="1.6"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="물품명" />
 
-        <TableLayout
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="수  량" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="가  격" />
+        </LinearLayout>
+        <ListView
             android:id="@+id/shoppingBasket"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="물품명" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="수  량" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="가  격" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="스팸" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
-                    android:text="1" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="5,000" />
-            </TableRow>
-
-            <TableRow
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
-
-            </TableRow>
-
-        </TableLayout>
+        </ListView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -94,25 +65,23 @@
 
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="30dp"
             android:text="POS"
             android:textSize="50dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text"
-            android:layout_centerHorizontal="true"
             android:text="team15"
             android:textSize="25dp" />
 
@@ -120,33 +89,26 @@
             android:id="@+id/customManagementBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:text="회원관리" />
 
         <Button
             android:id="@+id/productManagementBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/customManagementBtn"
-            android:layout_centerHorizontal="true"
             android:text="물품관리" />
 
         <Button
             android:id="@+id/productSearchBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/productManagementBtn"
-            android:layout_centerHorizontal="true"
             android:text="물품조회" />
 
         <Button
             android:id="@+id/productRefundBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/productSearchBtn"
-            android:layout_centerHorizontal="true"
             android:text="물품환불" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,14 +1,15 @@
-package team15.pos;
+package team15.pos.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
+
+import team15.pos.R;
 
 /**
  * Created by JSH on 2017-12-20.
@@ -43,7 +44,11 @@ public class SelectPaymentDialog extends Dialog {
         cashBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "현금결제", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "현금결제", Toast.LENGTH_SHORT).show();
+                CashPaymentDialog cashPaymentDialog = new CashPaymentDialog(context);
+                cashPaymentDialog.show();
+                SelectPaymentDialog.this.dismiss();
+
             }
         });
 
