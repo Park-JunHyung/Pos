@@ -64,5 +64,13 @@ public class SelectMemberManageDialog extends Dialog {
 
             }
         });
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MemberEditDialog memberEditDialog = new MemberEditDialog(context);
+                memberEditDialog.show();
+                SelectMemberManageDialog.this.dismiss();
+            }
+        });
     }
 }
