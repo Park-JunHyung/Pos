@@ -2,12 +2,15 @@ package team15.pos.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import team15.pos.CustomerDeleteActivity;
+import team15.pos.CustomerEditActivity;
 import team15.pos.R;
 
 /**
@@ -48,11 +51,20 @@ public class SelectMemberManageDialog extends Dialog {
                 SelectMemberManageDialog.this.dismiss();
             }
         });
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent intent= new Intent(context,CustomerEditActivity.class);
+                context.startActivity(intent);
+            }
+        });
         delBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                Intent intent= new Intent(context,CustomerDeleteActivity.class);
+                context.startActivity(intent);
             }
         });
         addBtn.setOnClickListener(new View.OnClickListener() {

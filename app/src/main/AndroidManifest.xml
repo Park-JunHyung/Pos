@@ -74,15 +74,20 @@
             android:name=".ProductEditActivity"
             android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".PaymentRefundActivity">
+        <activity android:name=".PaymentRefundActivity"
+                  android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".CustomerEditActivity">
+        <activity android:name=".CustomerEditActivity"
+                  android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".CustomerEditListItem">
+        <activity android:name=".CustomerEditListItem"
+                  android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".CustomerDeleteActivity">
+        <activity android:name=".CustomerDeleteActivity"
+                  android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".CustomerDeleteListItem">
+        <activity android:name=".CustomerDeleteListItem"
+                  android:screenOrientation="landscape">
         </activity>
     </application>
 
