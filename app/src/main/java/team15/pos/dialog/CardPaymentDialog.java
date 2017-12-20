@@ -9,8 +9,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import team15.pos.R;
 
@@ -18,12 +16,12 @@ import team15.pos.R;
  * Created by JSH on 2017-12-20.
  */
 
-public class CashPaymentDialog extends Dialog {
+public class CardPaymentDialog extends Dialog {
 
 
     private Context context;
 
-    public CashPaymentDialog(@NonNull Context context) {
+    public CardPaymentDialog(@NonNull Context context) {
         super(context);
         this.context = context;
     }
@@ -38,17 +36,15 @@ public class CashPaymentDialog extends Dialog {
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.cash_payment);
+        setContentView(R.layout.card_payment);
 
-        TextView payment = (TextView)findViewById(R.id.payment);
-        EditText totalPrice = (EditText)findViewById(R.id.totalPriceOfDialog);
-        TextView change = (TextView)findViewById(R.id.change);
-        Button dismissBtn = (Button)findViewById(R.id.dismissBtnOfCash);
+
+        Button dismissBtn = (Button)findViewById(R.id.dismissBtnOfCard);
 
         dismissBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CashPaymentDialog.this.dismiss();
+                CardPaymentDialog.this.dismiss();
             }
         });
 

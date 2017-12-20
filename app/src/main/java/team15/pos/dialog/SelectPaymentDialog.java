@@ -55,7 +55,11 @@ public class SelectPaymentDialog extends Dialog {
         cardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "카드결제", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "카드결제", Toast.LENGTH_SHORT).show();
+
+                CardPaymentDialog cardPaymentDialog = new CardPaymentDialog(context);
+                cardPaymentDialog.show();
+                SelectPaymentDialog.this.dismiss();
             }
         });
 
