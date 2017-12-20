@@ -8,25 +8,24 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import team15.pos.R;
 import team15.pos.dao.EmployeeAuth;
-import team15.pos.dto.Manager;
 
 /**
- * Created by JSH on 2017-12-20.
+ * Created by JSH on 2017-12-21.
  */
 
-public class EmployeeAuthDialog extends Dialog {
+public class ManagerAuthDialog extends Dialog {
 
 
     private Context context;
     private String id;
     private String password;
-    private int loginCount;
 
-    public EmployeeAuthDialog(@NonNull Context context) {
+    public ManagerAuthDialog(@NonNull Context context) {
         super(context);
         this.context = context;
     }
@@ -42,18 +41,18 @@ public class EmployeeAuthDialog extends Dialog {
         getWindow().setAttributes(lpWindow);
 
         setContentView(R.layout.dialog_employee_auth);
-
+        TextView title = (TextView) findViewById(R.id.authTitle);
         Button dismissBtn = (Button) findViewById(R.id.dismissBtnOfEmployeeAuth);
         EditText employeeIdInput = (EditText) findViewById(R.id.employeeIdInput);
         EditText employeePasswordInput = (EditText) findViewById(R.id.employeePasswordInput);
         Button checkEmployee = (Button) findViewById(R.id.checkEmployee);
 
-        loginCount = 0;
+        title.setText("관리자 인증");
 
         dismissBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EmployeeAuthDialog.this.dismiss();
+                ManagerAuthDialog.this.dismiss();
             }
         });
 
@@ -64,19 +63,15 @@ public class EmployeeAuthDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 boolean success = new EmployeeAuth().employeeAuth(id, password);
-                loginCount++;
+
                 if (success) {
                     SelectMemberManageDialog selectMemberManageDialog = new SelectMemberManageDialog(context);
                     selectMemberManageDialog.show();
-                    EmployeeAuthDialog.this.dismiss();
+                    ManagerAuthDialog.this.dismiss();
                 } else {
-                    if (loginCount > 10) {
-                        ManagerAuthDialog managerAuthDialog = new ManagerAuthDialog(context);
-                        managerAuthDialog.show();
-                        EmployeeAuthDialog.this.dismiss();
-                    } else {
-                        Toast.makeText(context, "비밀번호가 잘못되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
+
+                    Toast.makeText(context, "입력에 오류가 있습니다.", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import team15.pos.dialog.CardRefundDIalog;
+import team15.pos.dialog.EmployeeAuthDialog;
 import team15.pos.dialog.SelectMemberManageDialog;
 import team15.pos.dialog.SelectPaymentDialog;
 import team15.pos.dialog.SelectProductManageDialog;
@@ -56,8 +57,12 @@ public class MainActivity extends AppCompatActivity {
         customManagementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EmployeeAuthDialog employeeAuthDialog = new EmployeeAuthDialog(MainActivity.this);
+                employeeAuthDialog.show();
+                /*
                 SelectMemberManageDialog selectMemberManageDialog = new SelectMemberManageDialog(MainActivity.this);
                 selectMemberManageDialog.show();
+                */
             }
         });
 
