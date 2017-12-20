@@ -20,24 +20,9 @@ public class MainActivity extends AppCompatActivity {
         runPaymentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final AlertDialog.Builder paymentDialog = new AlertDialog.Builder(MainActivity.this);
-                final CharSequence[] paymentType = {"현금결제", "카드결제", "포인트 결제"};
+               SelectPaymentDialog selectPaymentDialog = new SelectPaymentDialog(MainActivity.this);
 
-                DialogInterface dialogInterface= paymentDialog.setTitle("결제 선택")
-                        .setItems(paymentType, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Toast.makeText(MainActivity.this, paymentType[i].toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setNegativeButton("x", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //Toast.makeText(MainActivity.this, "종료",Toast.LENGTH_SHORT).show();
-                                dialogInterface.dismiss();
-                            }
-                        })
-                        .show();
+               selectPaymentDialog.show();
             }
         });
     }
