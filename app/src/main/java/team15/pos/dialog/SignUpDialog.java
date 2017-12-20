@@ -14,12 +14,12 @@ import team15.pos.R;
  * Created by JSH on 2017-12-20.
  */
 
-public class CardPaymentDialog extends Dialog {
+public class SignUpDialog extends Dialog {
 
 
     private Context context;
 
-    public CardPaymentDialog(@NonNull Context context) {
+    public SignUpDialog(@NonNull Context context) {
         super(context);
         this.context = context;
     }
@@ -34,17 +34,15 @@ public class CardPaymentDialog extends Dialog {
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.dialog_card_payment);
+        setContentView(R.layout.dialog_customer_signup);
 
-
-        Button dismissBtn = (Button)findViewById(R.id.dismissBtnOfCard);
+        Button dismissBtn = (Button)findViewById(R.id.dismissBtnOfSignUP);
 
         dismissBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CardPaymentDialog.this.dismiss();
+                SignUpDialog.this.dismiss();
             }
         });
-
     }
 }

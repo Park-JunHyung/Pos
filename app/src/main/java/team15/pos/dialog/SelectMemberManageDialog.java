@@ -14,12 +14,12 @@ import team15.pos.R;
  * Created by JSH on 2017-12-20.
  */
 
-public class UserAuthDialog extends Dialog {
+public class SelectMemberManageDialog extends Dialog {
 
 
     private Context context;
 
-    public UserAuthDialog(@NonNull Context context) {
+    public SelectMemberManageDialog(@NonNull Context context) {
         super(context);
         this.context = context;
     }
@@ -34,26 +34,35 @@ public class UserAuthDialog extends Dialog {
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.dialog_user_auth);
+        setContentView(R.layout.dialog_select_member_manage);
+
+        Button addBtn = (Button) findViewById(R.id.select_member_add);
+        Button editBtn = (Button) findViewById(R.id.select_member_edit);
+        Button delBtn = (Button) findViewById(R.id.select_member_del);
+        Button dismissBtn = (Button) findViewById(R.id.dismissBtnOfSelectMemberManage);
 
 
-        Button dismissBtn = (Button) findViewById(R.id.dismissBtnOfUserAuth);
-        Button checkUser = (Button) findViewById(R.id.checkUserPhone);
         dismissBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserAuthDialog.this.dismiss();
+                SelectMemberManageDialog.this.dismiss();
             }
         });
 
-        checkUser.setOnClickListener(new View.OnClickListener() {
+        delBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PointPaymentDialog pointPaymentDialog = new PointPaymentDialog(context);
-                pointPaymentDialog.show();
-                UserAuthDialog.this.dismiss();
+
             }
         });
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SignUpDialog signUpDialog = new SignUpDialog(context);
+                signUpDialog.show();
+                SelectMemberManageDialog.this.dismiss();
 
+            }
+        });
     }
 }

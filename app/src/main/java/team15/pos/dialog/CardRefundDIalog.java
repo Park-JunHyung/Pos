@@ -4,9 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 
 import team15.pos.R;
 
@@ -34,7 +32,7 @@ public class CardRefundDIalog extends Dialog {
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.card_refund_dialog);
+        setContentView(R.layout.dialog_card_refund);
 
     }
 }

@@ -9,7 +9,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import team15.pos.R;
@@ -38,7 +37,7 @@ public class CashPaymentDialog extends Dialog {
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
 
-        setContentView(R.layout.cash_payment);
+        setContentView(R.layout.dialog_cash_payment);
 
         TextView payment = (TextView)findViewById(R.id.payment);
         EditText totalPrice = (EditText)findViewById(R.id.totalPriceOfDialog);
