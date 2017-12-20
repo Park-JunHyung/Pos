@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -17,44 +18,71 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".CustomerManagementActivity"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".CustomerManagementActivity"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".CustomerSignupActivity"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".CustomerSignupActivity"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".CustomerSearchActivity"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".CustomerSearchActivity"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".ProductAddActivity"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".ProductAddActivity"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".ProductSearchActivity"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".ProductSearchActivity"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".ProductSearchItem"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".ProductSearchItem"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".PaymentManageActivity"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".PaymentManageActivity"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".PaymentManageSearchItem"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".PaymentManageSearchItem"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".CashPaymentManageActivity"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".CashPaymentManageActivity"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".CashOrCardPaymentListItem"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".CashOrCardPaymentListItem"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".CardPaymentManageActivity"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".CardPaymentManageActivity"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".ProductDeleteActivity"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".ProductDeleteActivity"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".ProductDeleteSearchItem"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".ProductDeleteSearchItem"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".ProductEditActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".PaymentRefundActivity">
+        </activity>
+        <activity android:name=".CustomerEditActivity">
+        </activity>
+        <activity android:name=".CustomerEditListItem">
+        </activity>
+        <activity android:name=".CustomerDeleteActivity">
+        </activity>
+        <activity android:name=".CustomerDeleteListItem">
         </activity>
     </application>
 
