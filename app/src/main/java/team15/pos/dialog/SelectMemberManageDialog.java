@@ -76,6 +76,5 @@ public class SelectMemberManageDialog extends Dialog {
 
             }
         });
-
     }
 }
