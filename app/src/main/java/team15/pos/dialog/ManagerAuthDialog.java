@@ -66,7 +66,7 @@ public class ManagerAuthDialog extends Dialog {
                 id = employeeIdInput.getText().toString();
                 password = employeePasswordInput.getText().toString();
 
-                boolean success = new EmployeeAuth().employeeAuth(id, password);
+                boolean success = new EmployeeAuth(context).employeeAuth(id, password);
 
                 if (success) {
                     SelectMemberManageDialog selectMemberManageDialog = new SelectMemberManageDialog(context);
