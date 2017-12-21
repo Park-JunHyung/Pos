@@ -56,8 +56,8 @@ public class SelectPaymentDialog extends Dialog {
             public void onClick(View view) {
                 //Toast.makeText(context, "카드결제", Toast.LENGTH_SHORT).show();
 
-                CardPaymentDialog cardPaymentDialog = new CardPaymentDialog(context);
-                cardPaymentDialog.show();
+                UserAuthDialog userAuthDialog = new UserAuthDialog(context, 1);
+                userAuthDialog.show();
                 SelectPaymentDialog.this.dismiss();
             }
         });

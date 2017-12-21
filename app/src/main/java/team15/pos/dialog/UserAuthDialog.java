@@ -7,8 +7,12 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import team15.pos.R;
+import team15.pos.dao.MemberAuth;
+import team15.pos.dto.Member;
 
 /**
  * Created by JSH on 2017-12-20.
@@ -41,6 +45,7 @@ public class UserAuthDialog extends Dialog {
 
         Button dismissBtn = (Button) findViewById(R.id.dismissBtnOfUserAuth);
         Button checkUser = (Button) findViewById(R.id.checkUserPhone);
+        final EditText inputPhone=findViewById(R.id.userInputPhoneNumber);
 
         dismissBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,16 +54,34 @@ public class UserAuthDialog extends Dialog {
             }
         });
 
-
         View.OnClickListener[] listener = new View.OnClickListener[3];
         listener[0]=new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PointPaymentDialog pointPaymentDialog = new PointPaymentDialog(context);
-                pointPaymentDialog.show();
-                UserAuthDialog.this.dismiss();
+                Member selectMember=new MemberAuth().memberAuthDone(inputPhone.getText().toString(),context);
+                if (selectMember!=null){
+                    PointPaymentDialog pointPaymentDialog = new PointPaymentDialog(context);
+                    pointPaymentDialog.show();
+                    UserAuthDialog.this.dismiss();
+                }else {
+                    Toast.makeText(context,"존재하지 않는 회원입니다.",Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+        listener[1]=new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Member selectMember=new MemberAuth().memberAuthDone(inputPhone.getText().toString(),context);
+                if (selectMember!=null) {
+                    CardPaymentDialog cardPaymentDialog = new CardPaymentDialog(context);
+                    cardPaymentDialog.show();
+                    UserAuthDialog.this.dismiss();
+                }else {
+                    Toast.makeText(context,"존재하지 않는 회원입니다.",Toast.LENGTH_SHORT).show();
+                }
             }
         };
         checkUser.setOnClickListener(listener[listenerId]);
     }
+
 }
