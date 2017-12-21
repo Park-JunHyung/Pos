@@ -91,7 +91,7 @@ public class CashPaymentDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 if (isOk){
-                    new CashPayment().setTypeAndPayment(getPayment,context);
+                    new CashPayment().setTypeAndPayment(getTotalPrice,context);
                     Toast.makeText(context,"현금 결제가 완료되었습니다.",Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(context,"받은 금액이 모자랍니다.",Toast.LENGTH_SHORT).show();
