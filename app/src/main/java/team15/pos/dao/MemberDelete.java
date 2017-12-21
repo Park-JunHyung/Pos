@@ -80,6 +80,7 @@ public class MemberDelete
         editor.putString("MemberList", json);
 
         editor.commit();
+        editor.remove("Temp").commit();
         return true;
     }
 }
