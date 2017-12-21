@@ -39,6 +39,7 @@
             <EditText
                 android:id="@+id/addProductName"
                 android:textSize="15dp"
+                android:hint="이름"
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:gravity="center"
@@ -62,6 +63,7 @@
             <EditText
                 android:id="@+id/addProductAmount"
                 android:layout_width="0dp"
+                android:hint="수량"
                 android:layout_weight="4"
                 android:gravity="center"
                 android:background="@drawable/border"
@@ -84,6 +86,7 @@
             <EditText
                 android:id="@+id/addProductPrice"
                 android:layout_width="0dp"
+                android:hint="가격"
                 android:layout_weight="4"
                 android:gravity="center"
                 android:background="@drawable/border"
@@ -105,6 +108,7 @@
             <EditText
                 android:id="@+id/addProductCompany"
                 android:layout_width="0dp"
+                android:hint="유통업체"
                 android:layout_weight="4"
                 android:gravity="center"
                 android:background="@drawable/border"
@@ -127,6 +131,7 @@
                 android:id="@+id/addProductExpireDate"
                 android:layout_width="0dp"
                 android:layout_weight="4"
+                android:hint="유통기한"
                 android:gravity="center"
                 android:background="@drawable/border"
                 android:layout_height="match_parent"/>
@@ -148,6 +153,7 @@
                 android:id="@+id/addProductPosition"
                 android:layout_width="0dp"
                 android:layout_weight="4"
+                android:hint="물품위치"
                 android:gravity="center"
                 android:background="@drawable/border"
                 android:layout_height="match_parent"/>
@@ -168,6 +174,7 @@
             <EditText
                 android:id="@+id/addProductCategory"
                 android:layout_width="0dp"
+                android:hint="카테고리"
                 android:layout_weight="4"
                 android:gravity="center"
                 android:background="@drawable/border"
@@ -190,6 +197,7 @@
                 android:id="@+id/addProductBarcode"
                 android:layout_width="0dp"
                 android:layout_weight="4"
+                android:hint="바코드"
                 android:gravity="center"
                 android:background="@drawable/border"
                 android:layout_height="match_parent"/>
