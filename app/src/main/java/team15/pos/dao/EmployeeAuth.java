@@ -5,4 +5,10 @@ package team15.pos.dao;
  */
 
 public class EmployeeAuth {
+
+    public boolean employeeAuth(String id, String password)
+    {
+        return true;
+    }
+
 }
