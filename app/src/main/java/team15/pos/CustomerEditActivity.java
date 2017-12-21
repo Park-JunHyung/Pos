@@ -35,8 +35,7 @@ public class CustomerEditActivity extends AppCompatActivity {
         editSearchPhoneNumber = (EditText)findViewById(R.id.editSearchPhoneNumber);
         Button searchBtn = (Button)findViewById(R.id.searchBtn);
         searchListView = (ListView)findViewById(R.id.searchListView);
-        customerAdapter = new CustomerAdapter();
-        searchListView.setAdapter(customerAdapter);
+
 
         backBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -52,6 +51,8 @@ public class CustomerEditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                customerAdapter = new CustomerAdapter();
+                searchListView.setAdapter(customerAdapter);
                 String searchPhone = editSearchPhoneNumber.getText().toString();
                 //전화번호 검사
                 String regex = "(01[016789])-(\\d{3,4})-\\d{4}$";
@@ -63,7 +64,7 @@ public class CustomerEditActivity extends AppCompatActivity {
                     editSearchPhoneNumber.setSelection(searchPhone.length());
                     return;
                 }
-                Member member = new MemberEditSearch().search(searchPhone);
+                Member member = new MemberEditSearch(CustomerEditActivity.this).search(searchPhone);
 
                 if (member==null){
                     Toast.makeText(CustomerEditActivity.this, "결과없음", Toast.LENGTH_SHORT).show();

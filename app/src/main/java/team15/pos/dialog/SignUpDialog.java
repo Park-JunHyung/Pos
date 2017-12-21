@@ -81,7 +81,7 @@ public class SignUpDialog extends Dialog {
                         return;
                     }
 
-                    isCheck = new MemberSignUp().checkDuplicationFunc(name, phone);
+                    isCheck = new MemberSignUp(context).checkDuplicationFunc(name, phone);
                     if (isCheck) {
                         Toast.makeText(context, "중복확인 성공", Toast.LENGTH_SHORT).show();
                     } else {
@@ -94,7 +94,7 @@ public class SignUpDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 if (isCheck) {
-                    boolean success = new MemberSignUp().addMember(name, phone);
+                    boolean success = new MemberSignUp(context).addMember(name, phone);
                     Toast.makeText(context, "회원가입 성공", Toast.LENGTH_SHORT).show();
                     SignUpDialog.this.dismiss();
                 } else {

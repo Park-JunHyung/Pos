@@ -40,4 +40,27 @@ public class Member extends Customer {
     public void setMemberPoint(int memberPoint) {
         this.memberPoint = memberPoint;
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Member member = (Member) o;
+
+        if (memberPoint != member.memberPoint) return false;
+        if (memberName != null ? !memberName.equals(member.memberName) : member.memberName != null)
+            return false;
+        return memberPhoneNumber != null ? memberPhoneNumber.equals(member.memberPhoneNumber) : member.memberPhoneNumber == null;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = memberName != null ? memberName.hashCode() : 0;
+        result = 31 * result + (memberPhoneNumber != null ? memberPhoneNumber.hashCode() : 0);
+        result = 31 * result + memberPoint;
+        return result;
+    }
 }

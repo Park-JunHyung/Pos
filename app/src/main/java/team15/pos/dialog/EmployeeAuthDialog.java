@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import team15.pos.R;
 import team15.pos.dao.EmployeeAuth;
 import team15.pos.dao.MemberDelete;
+import team15.pos.dao.MemberDeleteAuth;
 import team15.pos.dto.Manager;
 import team15.pos.dto.Member;
 
@@ -68,7 +69,7 @@ public class EmployeeAuthDialog extends Dialog {
         });
 
 
-        View.OnClickListener[] listener = new View.OnClickListener[3];
+        final View.OnClickListener[] listener = new View.OnClickListener[3];
 
         listener[0] = new View.OnClickListener() {
             @Override
@@ -76,7 +77,7 @@ public class EmployeeAuthDialog extends Dialog {
 
                 id = employeeIdInput.getText().toString();
                 password = employeePasswordInput.getText().toString();
-                boolean success = new EmployeeAuth().employeeAuth(id, password);
+                boolean success = new EmployeeAuth(context).employeeAuth(id, password);
                 loginCount++;
                 if (success) {
                     SelectMemberManageDialog selectMemberManageDialog = new SelectMemberManageDialog(context);
@@ -84,7 +85,7 @@ public class EmployeeAuthDialog extends Dialog {
                     EmployeeAuthDialog.this.dismiss();
                 } else {
                     if (loginCount > 10) {
-                        ManagerAuthDialog managerAuthDialog = new ManagerAuthDialog(context);
+                        ManagerAuthDialog managerAuthDialog = new ManagerAuthDialog(context, listenerid);
                         managerAuthDialog.show();
                         EmployeeAuthDialog.this.dismiss();
                     } else {
@@ -100,17 +101,17 @@ public class EmployeeAuthDialog extends Dialog {
 
                 id = employeeIdInput.getText().toString();
                 password = employeePasswordInput.getText().toString();
-                boolean success = new EmployeeAuth().employeeAuth(id, password);
+                boolean success = new MemberDeleteAuth(context).employeeAuth(id, password);
                 loginCount++;
 
                 if (success) {
-                    new MemberDelete().delete(new ArrayList<Member>());
+                    new MemberDelete(context).delete();
                     Toast.makeText(context, "삭제", Toast.LENGTH_SHORT).show();
 
                     EmployeeAuthDialog.this.dismiss();
                 } else {
                     if (loginCount > 10) {
-                        ManagerAuthDialog managerAuthDialog = new ManagerAuthDialog(context);
+                        ManagerAuthDialog managerAuthDialog = new ManagerAuthDialog(context,listenerid);
                         managerAuthDialog.show();
                         EmployeeAuthDialog.this.dismiss();
                     } else {
