@@ -68,7 +68,7 @@ public class EmployeeAuthDialog extends Dialog {
         });
 
 
-        View.OnClickListener[] listener = new View.OnClickListener[3];
+        final View.OnClickListener[] listener = new View.OnClickListener[3];
 
         listener[0] = new View.OnClickListener() {
             @Override
@@ -84,7 +84,7 @@ public class EmployeeAuthDialog extends Dialog {
                     EmployeeAuthDialog.this.dismiss();
                 } else {
                     if (loginCount > 10) {
-                        ManagerAuthDialog managerAuthDialog = new ManagerAuthDialog(context);
+                        ManagerAuthDialog managerAuthDialog = new ManagerAuthDialog(context, listenerid);
                         managerAuthDialog.show();
                         EmployeeAuthDialog.this.dismiss();
                     } else {
@@ -110,7 +110,7 @@ public class EmployeeAuthDialog extends Dialog {
                     EmployeeAuthDialog.this.dismiss();
                 } else {
                     if (loginCount > 10) {
-                        ManagerAuthDialog managerAuthDialog = new ManagerAuthDialog(context);
+                        ManagerAuthDialog managerAuthDialog = new ManagerAuthDialog(context,listenerid);
                         managerAuthDialog.show();
                         EmployeeAuthDialog.this.dismiss();
                     } else {

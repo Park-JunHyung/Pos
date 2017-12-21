@@ -26,10 +26,12 @@ public class ManagerAuthDialog extends Dialog {
     private String password;
     private EditText employeeIdInput;
     private EditText employeePasswordInput;
+    private int listenerid ;
 
-    public ManagerAuthDialog(@NonNull Context context) {
+    public ManagerAuthDialog(@NonNull Context context, int listenerid) {
         super(context);
         this.context = context;
+        this.listenerid = listenerid;
     }
 
     @Override
@@ -57,16 +59,15 @@ public class ManagerAuthDialog extends Dialog {
                 ManagerAuthDialog.this.dismiss();
             }
         });
-
-
-        checkEmployee.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener[] listener = new View.OnClickListener[3];
+        listener[0] = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 id = employeeIdInput.getText().toString();
                 password = employeePasswordInput.getText().toString();
 
-                boolean success = new EmployeeAuth(context).employeeAuth(id, password);
+                boolean success = new EmployeeAuth(context).managerAuth(id, password);
 
                 if (success) {
                     SelectMemberManageDialog selectMemberManageDialog = new SelectMemberManageDialog(context);
@@ -78,6 +79,7 @@ public class ManagerAuthDialog extends Dialog {
 
                 }
             }
-        });
+        };
+        checkEmployee.setOnClickListener(listener[listenerid]);
     }
 }

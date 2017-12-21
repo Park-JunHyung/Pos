@@ -98,7 +98,7 @@ public class MemberEditDialog extends Dialog
                 }
                 Member newMember = new Member(newName, newPhone);
                 newMember.setMemberPoint(Integer.valueOf(memberPointInput.getText().toString()));
-                boolean success = new MemberEdit().memberEdit(member, newMember);
+                boolean success = new MemberEdit(context).memberEdit(member, newMember);
                 if (success)
                 {
                     MemberEditDialog.this.dismiss();
