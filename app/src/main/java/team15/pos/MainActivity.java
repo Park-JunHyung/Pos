@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         customManagementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EmployeeAuthDialog employeeAuthDialog = new EmployeeAuthDialog(MainActivity.this);
+                EmployeeAuthDialog employeeAuthDialog = new EmployeeAuthDialog(MainActivity.this,0);
                 employeeAuthDialog.show();
                 /*
                 SelectMemberManageDialog selectMemberManageDialog = new SelectMemberManageDialog(MainActivity.this);

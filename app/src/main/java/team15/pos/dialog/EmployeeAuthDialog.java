@@ -10,9 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import team15.pos.R;
 import team15.pos.dao.EmployeeAuth;
+import team15.pos.dao.MemberDelete;
 import team15.pos.dto.Manager;
+import team15.pos.dto.Member;
 
 /**
  * Created by JSH on 2017-12-20.
@@ -29,9 +33,12 @@ public class EmployeeAuthDialog extends Dialog {
     private EditText employeeIdInput;
     private EditText employeePasswordInput;
 
-    public EmployeeAuthDialog(@NonNull Context context) {
+    private int listenerid ;
+
+    public EmployeeAuthDialog(@NonNull Context context, int listenerid) {
         super(context);
         this.context = context;
+        this.listenerid = listenerid;
     }
 
     @Override
@@ -61,7 +68,9 @@ public class EmployeeAuthDialog extends Dialog {
         });
 
 
-        checkEmployee.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener[] listener = new View.OnClickListener[3];
+
+        listener[0] = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -83,6 +92,34 @@ public class EmployeeAuthDialog extends Dialog {
                     }
                 }
             }
-        });
+        };
+
+        listener[1] = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                id = employeeIdInput.getText().toString();
+                password = employeePasswordInput.getText().toString();
+                boolean success = new EmployeeAuth().employeeAuth(id, password);
+                loginCount++;
+
+                if (success) {
+                    new MemberDelete().delete(new ArrayList<Member>());
+                    Toast.makeText(context, "삭제", Toast.LENGTH_SHORT).show();
+
+                    EmployeeAuthDialog.this.dismiss();
+                } else {
+                    if (loginCount > 10) {
+                        ManagerAuthDialog managerAuthDialog = new ManagerAuthDialog(context);
+                        managerAuthDialog.show();
+                        EmployeeAuthDialog.this.dismiss();
+                    } else {
+                        Toast.makeText(context, "비밀번호가 잘못되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        };
+
+        checkEmployee.setOnClickListener(listener[listenerid]);
     }
 }

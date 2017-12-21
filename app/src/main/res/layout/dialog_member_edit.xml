@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:text="전화번호" />
 
-            <EditTexts
+            <EditText
                 android:id="@+id/memberPhoneInput"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
