@@ -1,6 +1,8 @@
 package team15.pos;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +16,11 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,8 +50,6 @@ public class CustomerDeleteActivity extends AppCompatActivity {
         searchListView = (ListView)findViewById(R.id.searchListView);
         deleteBtn = (Button)findViewById(R.id.deleteBtn);
 
-        customerAdapter = new CustomerAdapter();
-        searchListView.setAdapter(customerAdapter);
 
         backBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -61,6 +65,9 @@ public class CustomerDeleteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+
+                customerAdapter = new CustomerAdapter();
+                searchListView.setAdapter(customerAdapter);
                 String searchPhone = deleteSearchPhoneNumber.getText().toString();
                 //전화번호 검사
                 String regex = "(01[016789])-(\\d{3,4})-\\d{4}$";
@@ -72,7 +79,7 @@ public class CustomerDeleteActivity extends AppCompatActivity {
                     deleteSearchPhoneNumber.setSelection(searchPhone.length());
                     return;
                 }
-                Member member = new MemberDelete().search(searchPhone);
+                Member member = new MemberDelete(CustomerDeleteActivity.this).search(searchPhone);
 
                 if (member==null){
                     Toast.makeText(CustomerDeleteActivity.this, "결과없음", Toast.LENGTH_SHORT).show();
@@ -87,11 +94,29 @@ public class CustomerDeleteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                SharedPreferences preferences;
+                SharedPreferences.Editor editor;
                 int count=0;
                 for (int i=0;i<customerAdapter.getCount();i++){
                     CustomerDeleteListItem customerDeleteListItem =(CustomerDeleteListItem) searchListView.getChildAt(i);
                     if(customerDeleteListItem.getSearchedDeleteCheckbox().isChecked()){
                         count++;
+
+                        preferences = CustomerDeleteActivity.this.getSharedPreferences("data", Context.MODE_PRIVATE);
+                        editor = preferences.edit();
+                        Gson gson = new Gson();
+                        String json;
+                        json = preferences.getString("Temp", "");
+                        ArrayList<Member> temp = gson.fromJson(json, new TypeToken<List<Member>>() {}.getType());
+                        if (null == temp)
+                        {
+                            temp = new ArrayList<>();
+                        }
+                        temp.add((Member) customerAdapter.getItem(i));
+                        json = gson.toJson(temp);
+                        editor.remove("Temp").commit();
+                        editor.putString("Temp", json);
+                        editor.commit();
                     }
                 }
                 if (count==0){
