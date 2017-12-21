@@ -22,6 +22,7 @@ import java.util.Date;
 import team15.pos.dao.CardPaymentList;
 import team15.pos.dao.PaymentList;
 import team15.pos.dto.Payment;
+import team15.pos.dto.Product;
 
 public class CardPaymentManageActivity extends AppCompatActivity {
 
@@ -187,7 +188,6 @@ public class CardPaymentManageActivity extends AppCompatActivity {
             }
         });
         searchCardTransactionBtn.setOnClickListener(new View.OnClickListener()
-
         {
             @Override
             public void onClick(View v)
@@ -260,7 +260,18 @@ public class CardPaymentManageActivity extends AppCompatActivity {
 
             view.setPayment_no(item.getPaymentNumber());
             view.setPayment_price(String.valueOf(item.getPaymentPrice()));
-            view.setPayment_productList(item.getPaymentProductList().toString());
+
+
+            String productlist = "";
+            for (Product product : item.getPaymentProductList())
+            {
+                productlist = productlist + product.getProductName() + " " + product.getProductAmount() + ", ";
+            }
+
+            productlist = productlist.substring(0, productlist.length() - 2);
+
+            view.setPayment_productList(productlist);
+
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd.");
             view.setPayment_date(simpleDateFormat.format(item.getPaymentDate()));
             return view;
