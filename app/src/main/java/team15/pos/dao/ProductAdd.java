@@ -18,6 +18,7 @@ import team15.pos.dto.Product;
 public class ProductAdd {
 
     ArrayList<Product> getProductList;
+    ArrayList<String> category;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     public boolean addProduct(Product getProduct, Context context){
@@ -36,6 +37,21 @@ public class ProductAdd {
         editor.putString("ProductList", json);
 
         editor.commit();
+
+        //카테고리추가
+        json=preferences.getString("Category","");
+        category=gson.fromJson(json,new TypeToken<List<String>>(){}.getType());
+        if (null == category) {
+            category = new ArrayList<>();
+        }
+        if (!category.contains(getProduct.getProductCategory())){
+            category.add(getProduct.getProductCategory());
+            json = gson.toJson(category);
+            editor.remove("Category").commit();
+            editor.putString("Category", json);
+            editor.commit();
+        }
+
         return true;
 
     }
