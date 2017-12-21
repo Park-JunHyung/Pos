@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     ArrayList<Product> productList = new ArrayList<>();
     ArrayList<Employee> employeeList = new ArrayList<>();
     ArrayList<Payment> paymentList = new ArrayList<>();
+    int balance;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     Gson gson = new Gson();
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+        editor = preferences.edit();
 
         Button runPaymentBtn = (Button) findViewById(R.id.runPayment);
         Button productManagementBtn = (Button) findViewById(R.id.productManagementBtn);
@@ -138,14 +142,25 @@ public class MainActivity extends AppCompatActivity
                 Product product =
                         new POSDAO(MainActivity.this)
                                 .searchProductUseBarcord(Integer.valueOf(barcodeNumber.getText().toString()));
-                customerAdapter.addItem(product);
-                customerAdapter.notifyDataSetChanged();
-                int total = Integer.valueOf(totalPrice.getText().toString());
-                totalPrice.setText(String.valueOf(total+product.getProductPrice()));
+                if (product!=null){
+                    customerAdapter.addItem(product);
+                    customerAdapter.notifyDataSetChanged();
+                    int total = Integer.valueOf(totalPrice.getText().toString());
+                    totalPrice.setText(String.valueOf(total+product.getProductPrice()));
+                }else {
+                    Toast.makeText(getApplicationContext(),"해당 물품이 존재하지 않습니다.",Toast.LENGTH_SHORT).show();
+                }
 
 
             }
         });
+
+
+        productList = gson.fromJson(preferences.getString("ProductList", ""), new TypeToken<List<Product>>()
+        {
+        }.getType());
+        balance=preferences.getInt("balance",10000);
+        pos = new POS(memberList, productList, employeeList, paymentList, balance);
     }
 
     @Override
@@ -153,20 +168,19 @@ public class MainActivity extends AppCompatActivity
     {
         super.onResume();
         //값가져오기
-        preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
-        editor = preferences.edit();
-        productList = gson.fromJson(preferences.getString("ProductList", ""), new TypeToken<List<Product>>()
-        {
-        }.getType());
 
-        pos = new POS(memberList, productList, employeeList, paymentList, 10000);
+        editor.putInt("balance", balance);
+        editor.commit();
 
     }
-
     private class CustomerAdapter extends BaseAdapter
     {
         public ArrayList<Product> getItems() {
             return items;
+        }
+
+        public void setItems(ArrayList<Product> items) {
+            this.items = items;
         }
 
         ArrayList<Product> items = new ArrayList<Product>();
@@ -215,5 +229,11 @@ public class MainActivity extends AppCompatActivity
 
             return view;
         }
+    }
+    public void resetListView(){
+        customerAdapter.setItems(new ArrayList<Product>());
+        customerAdapter.notifyDataSetChanged();
+        totalPrice.setText("0");
+        barcodeNumber.setText("");
     }
 }

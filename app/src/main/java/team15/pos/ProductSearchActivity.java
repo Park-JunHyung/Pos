@@ -8,7 +8,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,7 +46,9 @@ public class ProductSearchActivity extends AppCompatActivity {
         editor=preferences.edit();
         productList = gson.fromJson(preferences.getString("ProductList" , ""),new TypeToken<List<Product>>(){}.getType());
         categoryList= gson.fromJson(preferences.getString("Category" , ""),new TypeToken<List<String>>(){}.getType());
-
+        if (productList==null){
+            productList=new ArrayList<>();
+        }
         backBtn= (ImageButton) findViewById(R.id.backBtn);
         categoryBtn= (Button) findViewById(R.id.product_searchCategory);
         searchBtn= (Button) findViewById(R.id.product_searchBtn);

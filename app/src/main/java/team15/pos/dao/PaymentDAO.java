@@ -27,8 +27,6 @@ public class PaymentDAO {
         preferences = context.getSharedPreferences("data", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
-        System.currentTimeMillis();
-
         long now = System.currentTimeMillis();
         Date date = new Date(now);
         SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMddHHmmss");

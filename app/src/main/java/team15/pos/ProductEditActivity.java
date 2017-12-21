@@ -49,7 +49,9 @@ public class ProductEditActivity extends AppCompatActivity {
         editor=preferences.edit();
         productList = gson.fromJson(preferences.getString("ProductList" , ""),new TypeToken<List<Product>>(){}.getType());
         categoryList= gson.fromJson(preferences.getString("Category" , ""),new TypeToken<List<String>>(){}.getType());
-
+        if (productList==null){
+            productList=new ArrayList<>();
+        }
         backBtn= (ImageButton) findViewById(R.id.backFromEditProduct);
         categoryBtn= (Button) findViewById(R.id.product_searchCategory);
         searchBtn= (Button) findViewById(R.id.product_searchBtn);

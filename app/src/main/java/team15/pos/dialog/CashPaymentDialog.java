@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import team15.pos.MainActivity;
 import team15.pos.R;
 import team15.pos.dao.CashPayment;
 
@@ -73,7 +74,6 @@ public class CashPaymentDialog extends Dialog {
                 totalPrice.setText(String.valueOf(getTotalPrice));
                 getChange=getPayment-getTotalPrice;
                 if (getChange<0){
-                    Toast.makeText(context,"받은 금액이 모자랍니다.",Toast.LENGTH_SHORT).show();
                     isOk=false;
                 }else {
                     change.setText(String.valueOf(getChange));
@@ -91,13 +91,25 @@ public class CashPaymentDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 if (isOk){
-                    new CashPayment().setTypeAndPayment(getTotalPrice,context);
-                    Toast.makeText(context,"현금 결제가 완료되었습니다.",Toast.LENGTH_SHORT).show();
+                    if (noBalanceInPos()){
+                        Toast.makeText(context,"남아있는 잔액이 모자랍니다.",Toast.LENGTH_SHORT).show();
+                        CashPaymentDialog.this.dismiss();
+                    }else {
+                        new CashPayment().setTypeAndPayment(getTotalPrice,context);
+                        Toast.makeText(context,"현금 결제가 완료되었습니다.",Toast.LENGTH_SHORT).show();
+                        CashPaymentDialog.this.dismiss();
+                        ((MainActivity)context).resetListView();
+                    }
                 }else {
                     Toast.makeText(context,"받은 금액이 모자랍니다.",Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private boolean noBalanceInPos() {
+        int balance=preferences.getInt("balance",0);
+        return (balance<getChange)?true:false;
     }
 
 }
