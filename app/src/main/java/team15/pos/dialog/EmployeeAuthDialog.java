@@ -121,6 +121,30 @@ public class EmployeeAuthDialog extends Dialog {
             }
         };
 
+        listener[2] = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                id = employeeIdInput.getText().toString();
+                password = employeePasswordInput.getText().toString();
+                boolean success = new EmployeeAuth(context).employeeAuth(id, password);
+                loginCount++;
+                if (success) {
+                    SelectProductManageDialog selectProductManageDialog = new SelectProductManageDialog(context);
+                    selectProductManageDialog.show();
+                    EmployeeAuthDialog.this.dismiss();
+                } else {
+                    if (loginCount > 10) {
+                        ManagerAuthDialog managerAuthDialog = new ManagerAuthDialog(context, listenerid);
+                        managerAuthDialog.show();
+                        EmployeeAuthDialog.this.dismiss();
+                    } else {
+                        Toast.makeText(context, "비밀번호가 잘못되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        };
+
         checkEmployee.setOnClickListener(listener[listenerid]);
     }
 }
