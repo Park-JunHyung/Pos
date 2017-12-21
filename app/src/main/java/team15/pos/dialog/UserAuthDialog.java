@@ -18,10 +18,12 @@ public class UserAuthDialog extends Dialog {
 
 
     private Context context;
+    private int listenerId;
 
-    public UserAuthDialog(@NonNull Context context) {
+    public UserAuthDialog(@NonNull Context context, int listenerId) {
         super(context);
         this.context = context;
+        this.listenerId = listenerId;
     }
 
     @Override
@@ -39,6 +41,7 @@ public class UserAuthDialog extends Dialog {
 
         Button dismissBtn = (Button) findViewById(R.id.dismissBtnOfUserAuth);
         Button checkUser = (Button) findViewById(R.id.checkUserPhone);
+
         dismissBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,14 +49,16 @@ public class UserAuthDialog extends Dialog {
             }
         });
 
-        checkUser.setOnClickListener(new View.OnClickListener() {
+
+        View.OnClickListener[] listener = new View.OnClickListener[3];
+        listener[0]=new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PointPaymentDialog pointPaymentDialog = new PointPaymentDialog(context);
                 pointPaymentDialog.show();
                 UserAuthDialog.this.dismiss();
             }
-        });
-
+        };
+        checkUser.setOnClickListener(listener[listenerId]);
     }
 }

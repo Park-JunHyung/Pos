@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="포인트 결제"
+            android:text="회원 결제"
             android:textSize="20dp" />
 
         <Button
@@ -45,6 +45,7 @@
             android:layout_below="@+id/tempTextView1"
             android:layout_centerHorizontal="true"
             android:inputType="phone"
+            android:hint="010-0000-0000"
             android:maxLines="1" />
 
         <Button
