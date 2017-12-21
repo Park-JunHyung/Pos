@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
             <Button
-                android:text="과자"
+                android:text="모두"
                 android:id="@+id/product_searchCategory"
                 android:background="#ffffff"
                 android:layout_gravity="center"

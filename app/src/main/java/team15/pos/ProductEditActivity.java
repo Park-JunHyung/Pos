@@ -2,10 +2,11 @@ package team15.pos;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,6 +23,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
+import team15.pos.dao.ProductEdit;
 import team15.pos.dao.ProductSearch;
 import team15.pos.dto.Product;
 
@@ -48,14 +50,16 @@ public class ProductEditActivity extends AppCompatActivity {
         productList = gson.fromJson(preferences.getString("ProductList" , ""),new TypeToken<List<Product>>(){}.getType());
         categoryList= gson.fromJson(preferences.getString("Category" , ""),new TypeToken<List<String>>(){}.getType());
 
-        backBtn= (ImageButton) findViewById(R.id.backBtn);
+        backBtn= (ImageButton) findViewById(R.id.backFromEditProduct);
         categoryBtn= (Button) findViewById(R.id.product_searchCategory);
         searchBtn= (Button) findViewById(R.id.product_searchBtn);
         listView= (ListView) findViewById(R.id.productSearchList);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                new ProductEdit().addProduct(searchedList.get(i),getApplicationContext());
+                Intent intent=new Intent(ProductEditActivity.this,ProductAddActivity.class);
+                startActivityForResult(intent,i);
             }
         });
         searchNameText= (EditText) findViewById(R.id.product_searchName);
@@ -139,6 +143,17 @@ public class ProductEditActivity extends AppCompatActivity {
             productSearchItem.setProductName(searchedList.get(i).getProductName());
             productSearchItem.setProductBarcode(String.valueOf(searchedList.get(i).getProductBarcode()));
             return productSearchItem;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK){
+            productList = gson.fromJson(preferences.getString("ProductList" , ""),new TypeToken<List<Product>>(){}.getType());
+            categoryList= gson.fromJson(preferences.getString("Category" , ""),new TypeToken<List<String>>(){}.getType());
+            searchedList=new ProductSearch().searchProduct(productList,categoryBtn.getText().toString(),searchNameText.getText().toString());
+            adapter.notifyDataSetChanged();
         }
     }
 }
