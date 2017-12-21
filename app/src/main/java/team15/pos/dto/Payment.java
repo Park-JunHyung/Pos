@@ -1,6 +1,7 @@
 package team15.pos.dto;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Schwa on 2017-12-20.
@@ -11,9 +12,9 @@ public class Payment {
     private int paymentPrice;
     private ArrayList<Product> paymentProductList;
     private String paymentType;
-    private String paymentDate;
+    private Date paymentDate;
 
-    public Payment(String paymentNumber, int paymentPrice, ArrayList<Product> paymentProductList, String paymentType, String paymentDate) {
+    public Payment(String paymentNumber, int paymentPrice, ArrayList<Product> paymentProductList, String paymentType, Date paymentDate) {
         this.paymentNumber = paymentNumber;
         this.paymentPrice = paymentPrice;
         this.paymentProductList = paymentProductList;
@@ -53,11 +54,11 @@ public class Payment {
         this.paymentType = paymentType;
     }
 
-    public String getPaymentDate() {
+    public Date getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(String paymentDate) {
+    public void setPaymentDate(Date paymentDate) {
         this.paymentDate = paymentDate;
     }
 }
