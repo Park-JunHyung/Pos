@@ -52,12 +52,11 @@ public class PaymentRefundActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                customerAdapter = new CustomerAdapter();
+                productRefundSearchList.setAdapter(customerAdapter);
                 String paymentid = productRefund_number.getText().toString();
-                if (paymentid.isEmpty()){
-                    Toast.makeText(PaymentRefundActivity.this, "결제번호를 입력헤주세요", Toast.LENGTH_SHORT).show();
-                }
+
                 ArrayList<Payment> payments = new ProductRefund(PaymentRefundActivity.this).getList(paymentid);
-                System.out.println("test");
 
                 if (payments.size()==0){
                     Toast.makeText(PaymentRefundActivity.this, "결과없음", Toast.LENGTH_SHORT).show();
@@ -77,6 +76,8 @@ public class PaymentRefundActivity extends AppCompatActivity
                 CardRefundDIalog cardRefundDIalog = new CardRefundDIalog(PaymentRefundActivity.this);
                 cardRefundDIalog.setPayment(payment);
                 cardRefundDIalog.show();
+                customerAdapter.setItems(new ArrayList<Payment>());
+                customerAdapter.notifyDataSetChanged();
             }
         });
 

@@ -72,15 +72,19 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                editor.putInt("totalPrice", Integer.parseInt(totalPrice.getText().toString()));
-                editor.commit();
+                if (customerAdapter.getCount()==0){
+                    Toast.makeText(getApplicationContext(),"상품을 추가해주세요.",Toast.LENGTH_SHORT).show();
+                }else {
+                    editor.putInt("totalPrice", Integer.parseInt(totalPrice.getText().toString()));
+                    editor.commit();
 
-                String json = gson.toJson(customerAdapter.getItems());
-                editor.remove("paymentProductList").commit();
-                editor.putString("paymentProductList", json);
-                editor.commit();
-                SelectPaymentDialog selectPaymentDialog = new SelectPaymentDialog(MainActivity.this);
-                selectPaymentDialog.show();
+                    String json = gson.toJson(customerAdapter.getItems());
+                    editor.remove("paymentProductList").commit();
+                    editor.putString("paymentProductList", json);
+                    editor.commit();
+                    SelectPaymentDialog selectPaymentDialog = new SelectPaymentDialog(MainActivity.this);
+                    selectPaymentDialog.show();
+                }
             }
         });
         productManagementBtn.setOnClickListener(new View.OnClickListener()
@@ -88,8 +92,12 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                EmployeeAuthDialog employeeAuthDialog = new EmployeeAuthDialog(MainActivity.this, 2);
+                employeeAuthDialog.show();
+                /*
                 SelectProductManageDialog selectProductManageDialog = new SelectProductManageDialog(MainActivity.this);
                 selectProductManageDialog.show();
+                */
             }
         });
         productRefundBtn.setOnClickListener(new View.OnClickListener()
@@ -139,16 +147,20 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Product product =
-                        new POSDAO(MainActivity.this)
-                                .searchProductUseBarcord(Integer.valueOf(barcodeNumber.getText().toString()));
-                if (product!=null){
-                    customerAdapter.addItem(product);
-                    customerAdapter.notifyDataSetChanged();
-                    int total = Integer.valueOf(totalPrice.getText().toString());
-                    totalPrice.setText(String.valueOf(total+product.getProductPrice()));
+                if (barcodeNumber.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"바코드를 입력하세요.",Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(getApplicationContext(),"해당 물품이 존재하지 않습니다.",Toast.LENGTH_SHORT).show();
+                    Product product =
+                            new POSDAO(MainActivity.this)
+                                    .searchProductUseBarcord(Integer.valueOf(barcodeNumber.getText().toString()));
+                    if (product!=null){
+                        customerAdapter.addItem(product);
+                        customerAdapter.notifyDataSetChanged();
+                        int total = Integer.valueOf(totalPrice.getText().toString());
+                        totalPrice.setText(String.valueOf(total+product.getProductPrice()));
+                    }else {
+                        Toast.makeText(getApplicationContext(),"해당 물품이 존재하지 않습니다.",Toast.LENGTH_SHORT).show();
+                    }
                 }
 
 

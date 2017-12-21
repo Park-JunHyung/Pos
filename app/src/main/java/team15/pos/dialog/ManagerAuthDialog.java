@@ -119,6 +119,31 @@ public class ManagerAuthDialog extends Dialog
                 }
             }
         };
+        listener[2] = new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
+                id = employeeIdInput.getText().toString();
+                password = employeePasswordInput.getText().toString();
+
+                boolean success = new EmployeeAuth(context).managerAuth(id, password);
+
+                if (success)
+                {
+                    SelectProductManageDialog selectProductManageDialog = new SelectProductManageDialog(context);
+                    selectProductManageDialog.show();
+
+                    ManagerAuthDialog.this.dismiss();
+                } else
+                {
+
+                    Toast.makeText(context, "입력에 오류가 있습니다.", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        };
         checkEmployee.setOnClickListener(listener[listenerid]);
     }
 }
