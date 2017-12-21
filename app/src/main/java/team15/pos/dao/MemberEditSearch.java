@@ -27,8 +27,9 @@ public class MemberEditSearch {
         this.context = context;
     }
 
-    public Member search(String phone){
+    public ArrayList<Member> search(String phone){
 
+        ArrayList<Member> members = new ArrayList<>();
         preferences = context.getSharedPreferences("data", Context.MODE_PRIVATE);
         editor = preferences.edit();
         Gson gson = new Gson();
@@ -42,12 +43,12 @@ public class MemberEditSearch {
 
         for (Member member : getMemberList)
         {
-            if (member.getMemberPhoneNumber().equals(phone)){
-                return member;
+            if (member.getMemberPhoneNumber().contains(phone)){
+                members.add(member);
             }
         }
 
-        return null;
+        return members;
     }
 
 
