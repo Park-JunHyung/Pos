@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +22,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
-import team15.pos.dao.ProductSearch;
+import team15.pos.dao.ProductEditSearch;
 import team15.pos.dto.Product;
 
 public class ProductSearchActivity extends AppCompatActivity {
@@ -69,7 +70,10 @@ public class ProductSearchActivity extends AppCompatActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchedList=new ProductSearch().searchProduct(productList,categoryBtn.getText().toString(),searchNameText.getText().toString());
+                searchedList=new ProductEditSearch().searchProduct(productList,categoryBtn.getText().toString(),searchNameText.getText().toString());
+                if (searchedList.size()==0){
+                    Toast.makeText(getApplicationContext(),"일치하는 항목이 없습니다.",Toast.LENGTH_SHORT).show();
+                }
                 listView.setAdapter(adapter);
             }
         });
