@@ -70,6 +70,7 @@ public class CustomerDeleteActivity extends AppCompatActivity {
                 searchListView.setAdapter(customerAdapter);
                 String searchPhone = deleteSearchPhoneNumber.getText().toString();
                 //전화번호 검사
+                /*
                 String regex = "(01[016789])-(\\d{3,4})-\\d{4}$";
                 Matcher matcher = Pattern.compile(regex).matcher(searchPhone);
                 if (!matcher.find()) {
@@ -79,13 +80,19 @@ public class CustomerDeleteActivity extends AppCompatActivity {
                     deleteSearchPhoneNumber.setSelection(searchPhone.length());
                     return;
                 }
-                Member member = new MemberDelete(CustomerDeleteActivity.this).search(searchPhone);
+                */
+                ArrayList<Member> members = new MemberDelete(CustomerDeleteActivity.this).search(searchPhone);
 
-                if (member==null){
+                if (members.size() == 0)
+                {
                     Toast.makeText(CustomerDeleteActivity.this, "결과없음", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                customerAdapter.addItem(member);
+                for (Member member : members)
+                {
+                    customerAdapter.addItem(member);
+                }
+
                 customerAdapter.notifyDataSetChanged();
             }
         });

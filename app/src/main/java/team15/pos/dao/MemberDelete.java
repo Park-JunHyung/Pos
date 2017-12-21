@@ -28,16 +28,15 @@ public class MemberDelete
         this.context = context;
     }
 
-    public Member search(String phone)
+    public ArrayList<Member> search(String phone)
     {
+        ArrayList<Member> members = new ArrayList<>();
         preferences = context.getSharedPreferences("data", Context.MODE_PRIVATE);
         editor = preferences.edit();
         Gson gson = new Gson();
         String json;
         json = preferences.getString("MemberList", "");
-        getMemberList = gson.fromJson(json, new TypeToken<List<Member>>()
-        {
-        }.getType());
+        getMemberList = gson.fromJson(json, new TypeToken<List<Member>>() {}.getType());
         if (null == getMemberList)
         {
             getMemberList = new ArrayList<>();
@@ -45,11 +44,11 @@ public class MemberDelete
 
         for (Member member : getMemberList)
         {
-            if (member.getMemberPhoneNumber().equals(phone)){
-                return member;
+            if (member.getMemberPhoneNumber().contains(phone)){
+                members.add(member);
             }
         }
-        return null;
+        return members;
     }
 
     public boolean delete()

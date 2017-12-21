@@ -21,20 +21,23 @@ import team15.pos.dao.MemberEditSearch;
 import team15.pos.dialog.MemberEditDialog;
 import team15.pos.dto.Member;
 
-public class CustomerEditActivity extends AppCompatActivity {
+public class CustomerEditActivity extends AppCompatActivity
+{
 
     private EditText editSearchPhoneNumber;
     private ListView searchListView;
     CustomerAdapter customerAdapter;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_edit);
 
-        ImageButton backBtn = (ImageButton)findViewById(R.id.backBtn);
-        editSearchPhoneNumber = (EditText)findViewById(R.id.editSearchPhoneNumber);
-        Button searchBtn = (Button)findViewById(R.id.searchBtn);
-        searchListView = (ListView)findViewById(R.id.searchListView);
+        ImageButton backBtn = (ImageButton) findViewById(R.id.backBtn);
+        editSearchPhoneNumber = (EditText) findViewById(R.id.editSearchPhoneNumber);
+        Button searchBtn = (Button) findViewById(R.id.searchBtn);
+        searchListView = (ListView) findViewById(R.id.searchListView);
 
 
         backBtn.setOnClickListener(new View.OnClickListener()
@@ -55,6 +58,7 @@ public class CustomerEditActivity extends AppCompatActivity {
                 searchListView.setAdapter(customerAdapter);
                 String searchPhone = editSearchPhoneNumber.getText().toString();
                 //전화번호 검사
+                /*
                 String regex = "(01[016789])-(\\d{3,4})-\\d{4}$";
                 Matcher matcher = Pattern.compile(regex).matcher(searchPhone);
                 if (!matcher.find()) {
@@ -64,13 +68,18 @@ public class CustomerEditActivity extends AppCompatActivity {
                     editSearchPhoneNumber.setSelection(searchPhone.length());
                     return;
                 }
-                Member member = new MemberEditSearch(CustomerEditActivity.this).search(searchPhone);
+                */
+                ArrayList<Member> members = new MemberEditSearch(CustomerEditActivity.this).search(searchPhone);
 
-                if (member==null){
+                if (members.size() == 0)
+                {
                     Toast.makeText(CustomerEditActivity.this, "결과없음", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                customerAdapter.addItem(member);
+                for (Member member : members)
+                {
+                    customerAdapter.addItem(member);
+                }
                 customerAdapter.notifyDataSetChanged();
             }
         });
@@ -80,13 +89,12 @@ public class CustomerEditActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                Member member = (Member)customerAdapter.getItem(position);
+                Member member = (Member) customerAdapter.getItem(position);
 
                 MemberEditDialog memberEditDialog = new MemberEditDialog(CustomerEditActivity.this, member);
                 memberEditDialog.show();
             }
         });
-
 
 
     }
@@ -96,25 +104,32 @@ public class CustomerEditActivity extends AppCompatActivity {
         ArrayList<Member> items = new ArrayList<Member>();
 
         @Override
-        public int getCount() {
+        public int getCount()
+        {
             return items.size();
         }
 
-        public void addItem(Member item){ items.add(item);}
+        public void addItem(Member item)
+        {
+            items.add(item);
+        }
 
 
         @Override
-        public Object getItem(int position) {
+        public Object getItem(int position)
+        {
             return items.get(position);
         }
 
         @Override
-        public long getItemId(int position) {
+        public long getItemId(int position)
+        {
             return position;
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, ViewGroup parent)
+        {
             CustomerEditListItem view = new CustomerEditListItem(getApplicationContext());
 
             Member item = items.get(position);
