@@ -19,8 +19,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import team15.pos.dao.PaymentList;
 import team15.pos.dto.Member;
 import team15.pos.dto.Payment;
+import team15.pos.dto.Product;
 
 public class PaymentManageActivity extends AppCompatActivity
 {
@@ -39,6 +41,8 @@ public class PaymentManageActivity extends AppCompatActivity
     Date endDate;
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+    DatePickerDialog.OnDateSetListener listener2;
+    DatePickerDialog.OnDateSetListener listener1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,8 +64,17 @@ public class PaymentManageActivity extends AppCompatActivity
 
         Calendar calendar = Calendar.getInstance();
 
-        setTransactionStartDate.setText(calendar.get(Calendar.YEAR) + "년 " + calendar.get(Calendar.MONTH) + "월 " + calendar.get(Calendar.DATE)+"일");
-        setTransactionEndDate.setText(calendar.get(Calendar.YEAR) + "년 " + (calendar.get(Calendar.MONTH)+1) + "월 " + calendar.get(Calendar.DATE)+"일");
+        setTransactionStartDate.setText(calendar.get(Calendar.YEAR) + "년 " + calendar.get(Calendar.MONTH) + "월 " + calendar.get(Calendar.DATE) + "일");
+        setTransactionEndDate.setText(calendar.get(Calendar.YEAR) + "년 " + (calendar.get(Calendar.MONTH) + 1) + "월 " + calendar.get(Calendar.DATE) + "일");
+
+        try
+        {
+            startDate = simpleDateFormat.parse(calendar.get(Calendar.YEAR) + "년 " + calendar.get(Calendar.MONTH) + "월 " + calendar.get(Calendar.DATE) + "일");
+            endDate = simpleDateFormat.parse(calendar.get(Calendar.YEAR) + "년 " + (calendar.get(Calendar.MONTH) + 1) + "월 " + (calendar.get(Calendar.DATE) + 1) + "일");
+        } catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
 
 
         backBtn.setOnClickListener(new View.OnClickListener()
@@ -90,27 +103,46 @@ public class PaymentManageActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-        final DatePickerDialog.OnDateSetListener listener1 = new DatePickerDialog.OnDateSetListener()
+
+        listener1 = new DatePickerDialog.OnDateSetListener()
         {
-
             @Override
-
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
             {
 
                 String startDateString = year + "년 " + (monthOfYear + 1) + "월 " + dayOfMonth + "일";
-                setTransactionStartDate.setText(startDateString);
                 try
                 {
+                    Calendar calendar = Calendar.getInstance();
+                    Date date = simpleDateFormat.parse(calendar.get(Calendar.YEAR) + "년 " + (calendar.get(Calendar.MONTH) + 1) + "월 " + (calendar.get(Calendar.DATE)) + "일");
+
+                    if (date.before(simpleDateFormat.parse(year + "년 " + (monthOfYear + 1) + "월 " + dayOfMonth + "일")))
+                    {
+                        Toast.makeText(PaymentManageActivity.this, "잘못된 날짜 입니다.", Toast.LENGTH_SHORT).show();
+
+                        DatePickerDialog datePickerDialog =
+                                new DatePickerDialog(PaymentManageActivity.this, listener1,
+                                        calendar.get(Calendar.YEAR),
+                                        calendar.get(Calendar.MONTH) - 1,
+                                        calendar.get(Calendar.DATE)
+                                );
+                        datePickerDialog.show();
+
+                    }
+
+                    setTransactionStartDate.setText(startDateString);
+
+                    startDateString = year + "년 " + (monthOfYear) + "월 " + (dayOfMonth + 1) + "일";
                     startDate = simpleDateFormat.parse(startDateString);
                 } catch (ParseException e)
                 {
                     e.printStackTrace();
                 }
             }
-
         };
-        final DatePickerDialog.OnDateSetListener listener2 = new DatePickerDialog.OnDateSetListener()
+
+
+        listener2 = new DatePickerDialog.OnDateSetListener()
         {
 
             @Override
@@ -119,17 +151,37 @@ public class PaymentManageActivity extends AppCompatActivity
             {
 
                 String endDateString = year + "년 " + (monthOfYear + 1) + "월 " + dayOfMonth + "일";
-                setTransactionEndDate.setText(endDateString);
                 try
                 {
+                    Calendar calendar = Calendar.getInstance();
+                    Date date = simpleDateFormat.parse(calendar.get(Calendar.YEAR) + "년 " + (calendar.get(Calendar.MONTH) + 1) + "월 " + (calendar.get(Calendar.DATE)) + "일");
+
+                    if (date.before(simpleDateFormat.parse(year + "년 " + (monthOfYear + 1) + "월 " + dayOfMonth + "일")))
+                    {
+                        Toast.makeText(PaymentManageActivity.this, "잘못된 날짜 입니다.", Toast.LENGTH_SHORT).show();
+
+                        DatePickerDialog datePickerDialog =
+                                new DatePickerDialog(PaymentManageActivity.this, listener2,
+                                        calendar.get(Calendar.YEAR),
+                                        calendar.get(Calendar.MONTH),
+                                        calendar.get(Calendar.DATE)
+                                );
+                        datePickerDialog.show();
+
+                    }
+
+                    setTransactionEndDate.setText(endDateString);
+
+                    endDateString = year + "년 " + (monthOfYear + 1) + "월 " + (dayOfMonth + 1) + "일";
                     endDate = simpleDateFormat.parse(endDateString);
                 } catch (ParseException e)
                 {
                     e.printStackTrace();
                 }
             }
-
         };
+
+
         setTransactionStartDate.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -147,6 +199,7 @@ public class PaymentManageActivity extends AppCompatActivity
             }
         });
         setTransactionEndDate.setOnClickListener(new View.OnClickListener()
+
         {
             @Override
             public void onClick(View v)
@@ -161,7 +214,35 @@ public class PaymentManageActivity extends AppCompatActivity
                 datePickerDialog.show();
             }
         });
+        searchAllTransactionBtn.setOnClickListener(new View.OnClickListener()
 
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if (startDate.after(endDate))
+                {
+                    Toast.makeText(PaymentManageActivity.this, "잘못된 날짜입니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                customerAdapter.setItems(new ArrayList<Payment>());
+                customerAdapter.notifyDataSetChanged();
+
+                ArrayList<Payment> payments = new PaymentList(PaymentManageActivity.this).getList(startDate, endDate);
+
+                if (payments.size() == 0)
+                {
+                    Toast.makeText(PaymentManageActivity.this, "결과 없음", Toast.LENGTH_SHORT).show();
+                }
+
+                for (Payment payment : payments)
+                {
+                    customerAdapter.addItem(payment);
+                    customerAdapter.notifyDataSetChanged();
+                }
+            }
+        });
 
     }
 
@@ -179,6 +260,11 @@ public class PaymentManageActivity extends AppCompatActivity
         public void addItem(Payment item)
         {
             items.add(item);
+        }
+
+        public void setItems(ArrayList<Payment> items)
+        {
+            this.items = items;
         }
 
         @Override
@@ -201,8 +287,18 @@ public class PaymentManageActivity extends AppCompatActivity
             Payment item = items.get(position);
             view.setPayment_no(item.getPaymentNumber());
             view.setPayment_price(String.valueOf(item.getPaymentPrice()));
-            view.setPayment_productList(item.getPaymentProductList().toString());
+
+            String productlist = "";
+            for (Product product : item.getPaymentProductList())
+            {
+                productlist = productlist + product.getProductName() + " " + product.getProductAmount() + ", ";
+            }
+
+            productlist = productlist.substring(0, productlist.length() - 2);
+
+            view.setPayment_productList(productlist);
             view.setPayment_type(item.getPaymentType());
+
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd.");
             view.setPayment_date(simpleDateFormat.format(item.getPaymentDate()));
 

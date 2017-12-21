@@ -33,10 +33,10 @@ public class CashOrCardPaymentListItem extends LinearLayout
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.list_item_cash_or_card_payment, this, true);
 
-        cashOrCardPayment_no = (TextView) findViewById(R.id.payment_no);
-        cashOrCardPayment_price = (TextView) findViewById(R.id.payment_price);
-        cashOrCardPayment_productList = (TextView) findViewById(R.id.payment_productList);
-        cashOrCardPayment_date = (TextView) findViewById(R.id.payment_date);
+        cashOrCardPayment_no = (TextView) findViewById(R.id.cashOrCardPayment_no);
+        cashOrCardPayment_price = (TextView) findViewById(R.id.cashOrCardPayment_price);
+        cashOrCardPayment_productList = (TextView) findViewById(R.id.cashOrCardPayment_productList);
+        cashOrCardPayment_date = (TextView) findViewById(R.id.cashOrCardPayment_date);
     }
 
     public void setPayment_no(String payment_no)
