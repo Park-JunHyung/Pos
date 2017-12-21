@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
-    android:layout_height="200dp"
+    android:layout_height="250dp"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -12,15 +12,16 @@
 
         <TextView
             android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="현금결제"
-            android:textSize="20dp" />
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/dismissBtnOfCash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:layout_gravity="right"
             android:text="X" />
@@ -34,69 +35,94 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:layout_height="40dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="15dp"
                 android:text="받은돈 : " />
 
-            <TextView
+            <EditText
                 android:id="@+id/payment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00000000" />
+                android:inputType="number"
+                android:textSize="15dp"
+                android:maxLines="1"
+                android:hint="00000000" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="15dp"
                 android:text="원" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:layout_height="40dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="15dp"
                 android:text="총금액 : " />
 
-            <EditText
+            <TextView
                 android:id="@+id/totalPriceOfDialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLines="1"
+                android:textSize="15dp"
                 android:text="00000000" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="15dp"
                 android:text="원" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:layout_height="40dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="15dp"
                 android:text="거스름돈 : " />
 
             <TextView
                 android:id="@+id/change"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#0000ff"
+                android:textSize="15dp"
                 android:text="00000000" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="15dp"
                 android:text="원" />
 
         </LinearLayout>
@@ -105,7 +131,9 @@
             android:id="@+id/cashCheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="결제완료" />
+            android:layout_marginTop="5dp"
+            android:background="@drawable/border_btn"
+            android:text="결제완료"/>
 
     </LinearLayout>
 

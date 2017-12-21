@@ -13,17 +13,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import team15.pos.dao.POSDAO;
-import team15.pos.dialog.CardRefundDIalog;
-import team15.pos.dialog.EmployeeAuthDialog;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import team15.pos.dialog.SelectMemberManageDialog;
+import team15.pos.dao.POSDAO;
+import team15.pos.dialog.EmployeeAuthDialog;
 import team15.pos.dialog.SelectPaymentDialog;
 import team15.pos.dialog.SelectProductManageDialog;
 import team15.pos.dto.Employee;
@@ -71,6 +68,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                editor.putInt("totalPrice", Integer.parseInt(totalPrice.getText().toString()));
+                editor.commit();
+
+                String json = gson.toJson(customerAdapter.getItems());
+                editor.remove("paymentProductList").commit();
+                editor.putString("paymentProductList", json);
+                editor.commit();
                 SelectPaymentDialog selectPaymentDialog = new SelectPaymentDialog(MainActivity.this);
                 selectPaymentDialog.show();
             }
@@ -161,6 +165,10 @@ public class MainActivity extends AppCompatActivity
 
     private class CustomerAdapter extends BaseAdapter
     {
+        public ArrayList<Product> getItems() {
+            return items;
+        }
+
         ArrayList<Product> items = new ArrayList<Product>();
 
         @Override
