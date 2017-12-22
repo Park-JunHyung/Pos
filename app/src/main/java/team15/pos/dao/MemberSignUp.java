@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import team15.pos.dto.Member;
-import team15.pos.dto.Product;
 
 /**
  * Created by JSH on 2017-12-20.
@@ -45,7 +44,7 @@ public class MemberSignUp
 
         for (Member member : getMemberList)
         {
-            if (member.getMemberName().equals(name)&&member.getMemberPhoneNumber().equals(phone)){
+            if (member.getMemberPhoneNumber().equals(phone)){
                 return false;
             }
         }

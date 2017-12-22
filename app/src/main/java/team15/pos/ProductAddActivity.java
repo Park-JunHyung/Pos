@@ -48,6 +48,8 @@ public class ProductAddActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (omitCheck()){
                     Toast.makeText(getApplicationContext(),"입력하지 않은 항목이 있습니다.",Toast.LENGTH_SHORT).show();
+                }else if (maxAmount()){
+                    Toast.makeText(getApplicationContext(),"입력할 수 있는 최대 수량을 초과하였습니다.",Toast.LENGTH_SHORT).show();
                 }else if (addProduct()){
                     if (product!=null){
                         Toast.makeText(getApplicationContext(),"기존의 물품이 수정되었습니다.",Toast.LENGTH_SHORT).show();
@@ -73,6 +75,13 @@ public class ProductAddActivity extends AppCompatActivity {
             editProductCategory.setText(product.getProductCategory());
             editProductBarcode.setText(String.valueOf(product.getProductBarcode()));
         }
+    }
+
+    private boolean maxAmount() {
+        if (Integer.valueOf(editProductAmount.getText().toString())>=999){
+            return true;
+        }else
+            return false;
     }
 
     private boolean addProduct() {

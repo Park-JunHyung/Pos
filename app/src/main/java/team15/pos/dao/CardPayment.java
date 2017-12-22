@@ -25,10 +25,10 @@ public class CardPayment {
         json = preferences.getString("authMember", "");
         Member oldMember=gson.fromJson(json, new TypeToken<Member>() {}.getType());
         Member newMember=oldMember;
-        newMember.setMemberPoint(oldMember.getMemberPoint()+(getPayment/10));
+        newMember.setMemberPoint(oldMember.getMemberPoint()+(getPayment/100));
         if(new MemberEdit(context).memberEdit(oldMember,newMember)){
             new PaymentDAO().createPayment(getPayment,"카드",context);
-            Toast.makeText(context,String.valueOf(getPayment/10) + "포인트 적립이 완료되었습니다.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,String.valueOf(getPayment/100) + "포인트 적립이 완료되었습니다.",Toast.LENGTH_SHORT).show();
         }else
             Toast.makeText(context,"포인트 적립실패",Toast.LENGTH_SHORT).show();
     }
